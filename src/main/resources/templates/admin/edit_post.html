@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Editar Postagem</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Editar Postagem</h1>
+        <form action="#" th:action="@{|/admin/posts/${post.id}|}" th:object="${post}" method="post">
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input type="text" id="title" th:field="*{title}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="content">Conteúdo:</label>
+                <textarea id="content" th:field="*{content}" class="form-control"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+        </form>
+        <a href="/admin/posts" class="btn btn-secondary mt-3">Voltar</a>
+    </div>
+</body>
+</html>

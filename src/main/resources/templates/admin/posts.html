@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Admin - Lista de Postagens</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Postagens do Blog</h1>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>Título</th>
+                <th>Conteúdo</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.title}">Título</td>
+                <td th:text="${post.content}">Conteúdo</td>
+                <td>
+                    <a th:href="@{|/admin/posts/edit/${post.id}|}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{|/admin/posts/delete/${post.id}|}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+            <span th:text="'Página ' + ${currentPage + 1} + ' de ' + ${totalPages}"></span>
+            <div>
+                <a th:if="${currentPage > 0}"
+                   th:href="@{|/admin/posts?page=${currentPage - 1}|}"
+                   class="btn btn-secondary btn-sm">Página Anterior</a>
+
+                <a th:if="${currentPage < totalPages - 1}"
+                   th:href="@{|/admin/posts?page=${currentPage + 1}|}"
+                   class="btn btn-secondary btn-sm">Próxima Página</a>
+            </div>
+        </div>
+        <a href="/admin/posts/new" class="btn btn-success mt-3">Criar Nova Postagem</a>
+    </div>
+</body>
+</html>
